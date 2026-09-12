@@ -1,0 +1,7 @@
+query_id,query_type,recommended_index
+Q1,temporal,pickup_time_1
+Q2,spatial,pickup_location_2dsphere
+Q3,spatio_temporal,pickup_location_2dsphere_pickup_time_1
+Q4,temporal_attribute,pickup_time_1
+Q5,spatial_attribute,pickup_location_2dsphere
+Q6,spatio_temporal_attribute,pickup_location_2dsphere_pickup_time_1

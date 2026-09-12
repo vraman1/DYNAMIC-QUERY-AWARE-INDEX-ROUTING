@@ -1,0 +1,7 @@
+query_id,query_type,spatial_query,temporal_query,attribute_query,has_2dsphere,has_time_filter,number_of_filters,result_size,query_selectivity
+Q1,temporal,0,1,0,0,1,1,1894,0.0038250262541400758
+Q2,spatial,1,0,0,1,0,1,60320,0.12181920995233864
+Q3,spatio_temporal,1,1,0,1,1,2,215,0.00043420308587123355
+Q4,temporal_attribute,0,1,1,0,1,2,520,0.001050165603037402
+Q5,spatial_attribute,1,0,1,1,0,2,20125,0.04064342838678407
+Q6,spatio_temporal_attribute,1,1,1,1,1,3,56,0.00011309475725018176

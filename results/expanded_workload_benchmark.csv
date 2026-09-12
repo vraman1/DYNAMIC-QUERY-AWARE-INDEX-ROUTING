@@ -1,0 +1,91 @@
+query_id,query_type,description,run,results,execution_time_ms,documents_examined,keys_examined,index_used
+T1,temporal,1-hour time range,1,1894,6,1894,1894,pickup_time_1
+T1,temporal,1-hour time range,2,1894,6,1894,1894,pickup_time_1
+T1,temporal,1-hour time range,3,1894,8,1894,1894,pickup_time_1
+T1,temporal,1-hour time range,4,1894,6,1894,1894,pickup_time_1
+T1,temporal,1-hour time range,5,1894,9,1894,1894,pickup_time_1
+T2,temporal,2-hour time range,1,4486,22,4486,4486,pickup_time_1
+T2,temporal,2-hour time range,2,4486,12,4486,4486,pickup_time_1
+T2,temporal,2-hour time range,3,4486,19,4486,4486,pickup_time_1
+T2,temporal,2-hour time range,4,4486,18,4486,4486,pickup_time_1
+T2,temporal,2-hour time range,5,4486,20,4486,4486,pickup_time_1
+T3,temporal,30-minute time range,1,831,3,831,831,pickup_time_1
+T3,temporal,30-minute time range,2,831,4,831,831,pickup_time_1
+T3,temporal,30-minute time range,3,831,3,831,831,pickup_time_1
+T3,temporal,30-minute time range,4,831,4,831,831,pickup_time_1
+T3,temporal,30-minute time range,5,831,4,831,831,pickup_time_1
+S1,spatial,0.5 km radius,1,9441,89,9441,9452,pickup_location_2dsphere
+S1,spatial,0.5 km radius,2,9441,62,9441,9452,pickup_location_2dsphere
+S1,spatial,0.5 km radius,3,9441,68,9441,9452,pickup_location_2dsphere
+S1,spatial,0.5 km radius,4,9441,64,9441,9452,pickup_location_2dsphere
+S1,spatial,0.5 km radius,5,9441,63,9441,9452,pickup_location_2dsphere
+S2,spatial,1 km radius,1,60320,918,110135,110149,pickup_location_2dsphere
+S2,spatial,1 km radius,2,60320,1037,110135,110149,pickup_location_2dsphere
+S2,spatial,1 km radius,3,60320,1858,110135,110149,pickup_location_2dsphere
+S2,spatial,1 km radius,4,60320,1889,110135,110149,pickup_location_2dsphere
+S2,spatial,1 km radius,5,60320,1902,110135,110149,pickup_location_2dsphere
+S3,spatial,2 km radius,1,201452,3540,245018,245028,pickup_location_2dsphere
+S3,spatial,2 km radius,2,201452,3540,245018,245028,pickup_location_2dsphere
+S3,spatial,2 km radius,3,201452,3418,245018,245028,pickup_location_2dsphere
+S3,spatial,2 km radius,4,201452,3415,245018,245028,pickup_location_2dsphere
+S3,spatial,2 km radius,5,201452,3406,245018,245028,pickup_location_2dsphere
+ST1,spatio_temporal,1-hour + 0.5 km,1,41,4,41,54,pickup_location_2dsphere_pickup_time_1
+ST1,spatio_temporal,1-hour + 0.5 km,2,41,2,41,54,pickup_location_2dsphere_pickup_time_1
+ST1,spatio_temporal,1-hour + 0.5 km,3,41,4,41,54,pickup_location_2dsphere_pickup_time_1
+ST1,spatio_temporal,1-hour + 0.5 km,4,41,3,41,54,pickup_location_2dsphere_pickup_time_1
+ST1,spatio_temporal,1-hour + 0.5 km,5,41,3,41,54,pickup_location_2dsphere_pickup_time_1
+ST2,spatio_temporal,1-hour + 1 km,1,215,15,405,437,pickup_location_2dsphere_pickup_time_1
+ST2,spatio_temporal,1-hour + 1 km,2,215,15,405,437,pickup_location_2dsphere_pickup_time_1
+ST2,spatio_temporal,1-hour + 1 km,3,215,16,405,437,pickup_location_2dsphere_pickup_time_1
+ST2,spatio_temporal,1-hour + 1 km,4,215,15,405,437,pickup_location_2dsphere_pickup_time_1
+ST2,spatio_temporal,1-hour + 1 km,5,215,14,405,437,pickup_location_2dsphere_pickup_time_1
+ST3,spatio_temporal,2-hour + 2 km,1,2019,45,2260,2318,pickup_location_2dsphere_pickup_time_1
+ST3,spatio_temporal,2-hour + 2 km,2,2019,36,2260,2318,pickup_location_2dsphere_pickup_time_1
+ST3,spatio_temporal,2-hour + 2 km,3,2019,39,2260,2318,pickup_location_2dsphere_pickup_time_1
+ST3,spatio_temporal,2-hour + 2 km,4,2019,42,2260,2318,pickup_location_2dsphere_pickup_time_1
+ST3,spatio_temporal,2-hour + 2 km,5,2019,41,2260,2318,pickup_location_2dsphere_pickup_time_1
+TA1,temporal_attribute,1-hour + passenger >= 2,1,520,14,1894,1894,pickup_time_1
+TA1,temporal_attribute,1-hour + passenger >= 2,2,520,17,1894,1894,pickup_time_1
+TA1,temporal_attribute,1-hour + passenger >= 2,3,520,17,1894,1894,pickup_time_1
+TA1,temporal_attribute,1-hour + passenger >= 2,4,520,15,1894,1894,pickup_time_1
+TA1,temporal_attribute,1-hour + passenger >= 2,5,520,18,1894,1894,pickup_time_1
+TA2,temporal_attribute,1-hour + passenger >= 4,1,121,16,1894,1894,pickup_time_1
+TA2,temporal_attribute,1-hour + passenger >= 4,2,121,14,1894,1894,pickup_time_1
+TA2,temporal_attribute,1-hour + passenger >= 4,3,121,17,1894,1894,pickup_time_1
+TA2,temporal_attribute,1-hour + passenger >= 4,4,121,14,1894,1894,pickup_time_1
+TA2,temporal_attribute,1-hour + passenger >= 4,5,121,17,1894,1894,pickup_time_1
+TA3,temporal_attribute,2-hour + passenger >= 2,1,1290,36,4486,4486,pickup_time_1
+TA3,temporal_attribute,2-hour + passenger >= 2,2,1290,38,4486,4486,pickup_time_1
+TA3,temporal_attribute,2-hour + passenger >= 2,3,1290,41,4486,4486,pickup_time_1
+TA3,temporal_attribute,2-hour + passenger >= 2,4,1290,37,4486,4486,pickup_time_1
+TA3,temporal_attribute,2-hour + passenger >= 2,5,1290,38,4486,4486,pickup_time_1
+SA1,spatial_attribute,0.5 km + distance > 2,1,3070,161,9441,9452,pickup_location_2dsphere
+SA1,spatial_attribute,0.5 km + distance > 2,2,3070,149,9441,9452,pickup_location_2dsphere
+SA1,spatial_attribute,0.5 km + distance > 2,3,3070,145,9441,9452,pickup_location_2dsphere
+SA1,spatial_attribute,0.5 km + distance > 2,4,3070,146,9441,9452,pickup_location_2dsphere
+SA1,spatial_attribute,0.5 km + distance > 2,5,3070,146,9441,9452,pickup_location_2dsphere
+SA2,spatial_attribute,1 km + distance > 5,1,4676,1926,110135,110149,pickup_location_2dsphere
+SA2,spatial_attribute,1 km + distance > 5,2,4676,1922,110135,110149,pickup_location_2dsphere
+SA2,spatial_attribute,1 km + distance > 5,3,4676,1955,110135,110149,pickup_location_2dsphere
+SA2,spatial_attribute,1 km + distance > 5,4,4676,1978,110135,110149,pickup_location_2dsphere
+SA2,spatial_attribute,1 km + distance > 5,5,4676,2036,110135,110149,pickup_location_2dsphere
+SA3,spatial_attribute,2 km + distance > 2,1,67141,3689,245018,245028,pickup_location_2dsphere
+SA3,spatial_attribute,2 km + distance > 2,2,67141,3687,245018,245028,pickup_location_2dsphere
+SA3,spatial_attribute,2 km + distance > 2,3,67141,3690,245018,245028,pickup_location_2dsphere
+SA3,spatial_attribute,2 km + distance > 2,4,67141,3645,245018,245028,pickup_location_2dsphere
+SA3,spatial_attribute,2 km + distance > 2,5,67141,3641,245018,245028,pickup_location_2dsphere
+STA1,spatio_temporal_attribute,1-hour + 0.5 km + passenger >= 2,1,16,4,41,54,pickup_location_2dsphere_pickup_time_1
+STA1,spatio_temporal_attribute,1-hour + 0.5 km + passenger >= 2,2,16,3,41,54,pickup_location_2dsphere_pickup_time_1
+STA1,spatio_temporal_attribute,1-hour + 0.5 km + passenger >= 2,3,16,3,41,54,pickup_location_2dsphere_pickup_time_1
+STA1,spatio_temporal_attribute,1-hour + 0.5 km + passenger >= 2,4,16,3,41,54,pickup_location_2dsphere_pickup_time_1
+STA1,spatio_temporal_attribute,1-hour + 0.5 km + passenger >= 2,5,16,3,41,54,pickup_location_2dsphere_pickup_time_1
+STA2,spatio_temporal_attribute,1-hour + 1 km + passenger >= 4,1,13,19,405,437,pickup_location_2dsphere_pickup_time_1
+STA2,spatio_temporal_attribute,1-hour + 1 km + passenger >= 4,2,13,20,405,437,pickup_location_2dsphere_pickup_time_1
+STA2,spatio_temporal_attribute,1-hour + 1 km + passenger >= 4,3,13,19,405,437,pickup_location_2dsphere_pickup_time_1
+STA2,spatio_temporal_attribute,1-hour + 1 km + passenger >= 4,4,13,18,405,437,pickup_location_2dsphere_pickup_time_1
+STA2,spatio_temporal_attribute,1-hour + 1 km + passenger >= 4,5,13,18,405,437,pickup_location_2dsphere_pickup_time_1
+STA3,spatio_temporal_attribute,2-hour + 2 km + passenger >= 2,1,624,71,2260,2318,pickup_location_2dsphere_pickup_time_1
+STA3,spatio_temporal_attribute,2-hour + 2 km + passenger >= 2,2,624,77,2260,2318,pickup_location_2dsphere_pickup_time_1
+STA3,spatio_temporal_attribute,2-hour + 2 km + passenger >= 2,3,624,68,2260,2318,pickup_location_2dsphere_pickup_time_1
+STA3,spatio_temporal_attribute,2-hour + 2 km + passenger >= 2,4,624,64,2260,2318,pickup_location_2dsphere_pickup_time_1
+STA3,spatio_temporal_attribute,2-hour + 2 km + passenger >= 2,5,624,53,2260,2318,pickup_location_2dsphere_pickup_time_1

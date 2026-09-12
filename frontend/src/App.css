@@ -1,0 +1,2729 @@
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+:root {
+  font-family:
+    Inter,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  color: #0f172a;
+  background: #f1f5f9;
+}
+
+body {
+  min-width: 320px;
+  background: #f1f5f9;
+}
+
+button,
+select,
+input {
+  font: inherit;
+}
+
+
+/* =========================================================
+   APP
+   ========================================================= */
+
+.app {
+  min-height: 100vh;
+  background: #f1f5f9;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.app-header {
+  background: #0f172a;
+  padding: 23px 36px;
+  border-bottom: 1px solid #1e293b;
+}
+
+.header-content {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 25px;
+}
+
+.header-title {
+  min-width: 0;
+}
+
+.app-header h1 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 31px;
+  line-height: 1.15;
+  font-weight: 750;
+
+  letter-spacing: -0.5px;
+}
+
+.app-header p {
+  margin: 7px 0 0;
+
+  color: #ffffff;
+
+  font-size: 15px;
+  line-height: 1.4;
+
+  font-weight: 450;
+
+  opacity: 0.9;
+}
+
+.system-status {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 10px 14px;
+
+  border: 1px solid #334155;
+  border-radius: 22px;
+
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 550;
+
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #f59e0b;
+}
+
+.status-dot.online {
+  background: #22c55e;
+}
+
+
+/* =========================================================
+   TAB NAVIGATION
+   ========================================================= */
+
+.tab-navigation {
+  position: sticky;
+  top: 0;
+
+  z-index: 50;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.tab-container {
+  width: 100%;
+  max-width: 1500px;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  overflow-x: auto;
+}
+
+.tab-button {
+  padding: 16px 25px;
+
+  background: transparent;
+
+  border: none;
+  border-bottom: 3px solid transparent;
+
+  color: #334155;
+
+  font-size: 14px;
+  font-weight: 650;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+}
+
+.tab-button:hover {
+  color: #0f172a;
+  background: #f8fafc;
+}
+
+.tab-button.active {
+  color: #2563eb;
+  border-bottom-color: #2563eb;
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.dashboard-container {
+  width: 100%;
+  max-width: 1500px;
+
+  margin: 0 auto;
+
+  padding: 24px 36px 28px;
+}
+
+.dashboard-page {
+  width: 100%;
+
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   PAGE HEADING
+   ========================================================= */
+
+.page-heading {
+  position: relative;
+
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  margin-bottom: 21px;
+
+  gap: 4px;
+}
+
+.page-heading h2 {
+  margin: 0;
+
+  color: #0f172a;
+
+  font-size: 28px;
+  line-height: 1.2;
+
+  font-weight: 750;
+
+  letter-spacing: -0.35px;
+}
+
+.page-heading p {
+  margin: 6px 0 0;
+
+  color: #334155;
+
+  font-size: 15px;
+  line-height: 1.45;
+
+  font-weight: 500;
+}
+
+.badge {
+  position: absolute;
+
+  right: 0;
+  top: 0;
+
+  padding: 8px 12px;
+
+  background: #eff6ff;
+
+  border: 1px solid #bfdbfe;
+
+  border-radius: 7px;
+
+  color: #2563eb;
+
+  font-size: 11px;
+
+  font-weight: 750;
+}
+
+
+/* =========================================================
+   PANELS
+   ========================================================= */
+
+.panel {
+  width: 100%;
+
+  min-width: 0;
+
+  margin-bottom: 15px;
+
+  padding: 18px;
+
+  background: #ffffff;
+
+  border: 1px solid #d5dee9;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.035);
+}
+
+.panel-title {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 15px;
+}
+
+.panel-title h3 {
+  margin: 0;
+
+  color: #0f172a;
+
+  font-size: 19px;
+  line-height: 1.25;
+
+  font-weight: 750;
+}
+
+.panel-title span {
+  color: #334155;
+
+  font-size: 13px;
+  line-height: 1.4;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   METRIC CARDS
+   ========================================================= */
+
+.metric-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 14px;
+
+  margin-bottom: 15px;
+}
+
+.metric-grid.three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.metric-card {
+  min-width: 0;
+
+  padding: 16px;
+
+  background: #ffffff;
+
+  border: 1px solid #d5dee9;
+
+  border-radius: 9px;
+
+  text-align: center;
+}
+
+.metric-card.highlight {
+  background: #eff6ff;
+
+  border-color: #60a5fa;
+
+  box-shadow:
+    0 2px 7px rgba(37, 99, 235, 0.07);
+}
+
+.metric-card span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #1e293b;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.metric-card strong {
+  display: block;
+
+  color: #0f172a;
+
+  font-size: 24px;
+  line-height: 1.1;
+
+  font-weight: 750;
+}
+
+.metric-card small {
+  display: block;
+
+  margin-top: 6px;
+
+  color: #475569;
+
+  font-size: 12px;
+  line-height: 1.35;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   OVERVIEW
+   ========================================================= */
+
+.overview-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.55fr)
+    minmax(320px, 0.75fr);
+
+  gap: 14px;
+
+  align-items: start;
+
+  height: auto;
+
+  margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   ARCHITECTURE
+   ========================================================= */
+
+.architecture-panel {
+  overflow: hidden;
+
+  height: auto;
+
+  min-height: 0;
+
+  padding: 16px 18px 12px;
+
+  margin-bottom: 0;
+}
+
+.architecture-panel .panel-title {
+  margin-bottom: 12px;
+}
+
+.architecture-panel .panel-title span {
+  color: #334155;
+
+  font-size: 13px;
+
+  font-weight: 650;
+}
+
+.architecture {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  padding: 0;
+}
+
+.architecture-row {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+}
+
+.architecture-row.bottom {
+  width: 78%;
+  margin-top: 0;
+}
+
+.architecture-item {
+  flex: 1 1 0;
+
+  min-width: 0;
+
+  min-height: 82px;
+  height: 82px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 7px 8px;
+
+  border: 1px solid;
+
+  border-radius: 9px;
+
+  text-align: center;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.architecture-item:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 4px 10px rgba(15, 23, 42, 0.08);
+}
+
+.architecture-item span {
+  width: 29px;
+  height: 29px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 6px;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  font-size: 10px;
+
+  font-weight: 800;
+}
+
+.architecture-item strong {
+  max-width: 150px;
+
+  color: #0f172a;
+
+  font-size: 13px;
+  line-height: 1.25;
+
+  font-weight: 750;
+}
+
+.architecture-arrow {
+  flex: 0 0 auto;
+
+  color: #334155;
+
+  font-size: 19px;
+
+  font-weight: 800;
+}
+
+.architecture-connector {
+  height: 17px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #2563eb;
+
+  font-size: 20px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   ARCHITECTURE COLORS
+   ========================================================= */
+
+.architecture-item.blue {
+  background: #eff6ff;
+  border-color: #93c5fd;
+}
+
+.architecture-item.blue span {
+  background: #2563eb;
+}
+
+.architecture-item.purple {
+  background: #f5f3ff;
+  border-color: #c4b5fd;
+}
+
+.architecture-item.purple span {
+  background: #7c3aed;
+}
+
+.architecture-item.orange {
+  background: #fff7ed;
+  border-color: #fdba74;
+}
+
+.architecture-item.orange span {
+  background: #ea580c;
+}
+
+.architecture-item.green {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.architecture-item.green span {
+  background: #16a34a;
+}
+
+.architecture-item.cyan {
+  background: #ecfeff;
+  border-color: #67e8f9;
+}
+
+.architecture-item.cyan span {
+  background: #0891b2;
+}
+
+.architecture-item.pink {
+  background: #fdf2f8;
+  border-color: #f9a8d4;
+}
+
+.architecture-item.pink span {
+  background: #db2777;
+}
+
+.architecture-item.dark {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.architecture-item.dark span {
+  background: #334155;
+}
+
+
+/* =========================================================
+   KEY FINDING
+   ========================================================= */
+
+.finding-panel {
+  background: #f8fafc;
+
+  height: auto;
+
+  min-height: 0;
+
+  margin-bottom: 0;
+}
+
+.accuracy-highlight {
+  padding: 18px;
+
+  background: #eff6ff;
+
+  border: 1px solid #93c5fd;
+
+  border-radius: 9px;
+
+  text-align: center;
+}
+
+.accuracy-highlight span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #2563eb;
+
+  font-size: 15px;
+
+  font-weight: 750;
+}
+
+.accuracy-highlight strong {
+  display: block;
+
+  color: #2563eb;
+
+  font-size: 32px;
+
+  line-height: 1.1;
+
+  font-weight: 800;
+}
+
+.accuracy-highlight small {
+  display: block;
+
+  margin-top: 7px;
+
+  color: #475569;
+
+  font-size: 12px;
+}
+
+.improvement-small {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: 12px;
+
+  padding: 13px 14px;
+
+  background: #ffffff;
+
+  border: 1px solid #dbe3ec;
+
+  border-radius: 8px;
+}
+
+.improvement-small span {
+  display: block;
+
+  color: #334155;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+.improvement-small small {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #64748b;
+
+  font-size: 11px;
+}
+
+.improvement-small strong {
+  color: #0f172a;
+
+  font-size: 22px;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+.finding-stats {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 8px;
+
+  margin-top: 12px;
+}
+
+.mini-stat {
+  padding: 11px 8px;
+
+  background: #ffffff;
+
+  border: 1px solid #dbe3ec;
+
+  border-radius: 7px;
+
+  text-align: center;
+}
+
+.mini-stat span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #334155;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+.mini-stat strong {
+  color: #0f172a;
+
+  font-size: 11px;
+
+  font-weight: 750;
+}
+
+
+/* =========================================================
+   RESEARCH SCOPE
+   ========================================================= */
+
+.overview-grid + .panel {
+  width: 66.5%;
+
+  margin-top: -165px;
+
+  height: auto;
+
+  min-height: 0;
+
+  margin-bottom: 15px;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+.overview-grid + .panel .panel-title {
+  margin-bottom: 12px;
+}
+
+.scope-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 10px;
+}
+
+.scope-item {
+  min-width: 0;
+
+  min-height: 70px;
+
+  padding: 12px;
+
+  background: #f8fafc;
+
+  border: 1px solid #dbe3ec;
+
+  border-radius: 7px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.scope-item strong {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #0f172a;
+
+  font-size: 14px;
+
+  font-weight: 750;
+}
+
+.scope-item span {
+  color: #475569;
+
+  font-size: 12px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   LIVE ROUTER
+   ========================================================= */
+
+.router-grid {
+  display: grid;
+
+  grid-template-columns:
+    0.95fr
+    1.05fr;
+
+  gap: 15px;
+
+  align-items: start;
+
+  width: 100%;
+}
+
+.router-left-column,
+.router-right-column {
+  min-width: 0;
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   QUERY CONFIGURATION
+   ========================================================= */
+
+.input-label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #334155;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  text-align: center;
+}
+
+.query-select {
+  width: 100%;
+
+  padding: 11px 12px;
+
+  background: #ffffff;
+
+  border: 1px solid #cbd5e1;
+
+  border-radius: 7px;
+
+  color: #0f172a;
+
+  font-size: 14px;
+
+  outline: none;
+}
+
+.query-select:focus {
+  border-color: #60a5fa;
+
+  box-shadow:
+    0 0 0 2px rgba(37, 99, 235, 0.08);
+}
+
+.button-row {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 13px;
+}
+
+.primary-button,
+.secondary-button {
+  padding: 11px 18px;
+
+  border: none;
+
+  border-radius: 7px;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.primary-button {
+  background: #2563eb;
+
+  color: #ffffff;
+}
+
+.primary-button:hover {
+  background: #1d4ed8;
+}
+
+.secondary-button {
+  background: #e2e8f0;
+
+  color: #334155;
+}
+
+.secondary-button:hover {
+  background: #cbd5e1;
+}
+
+.primary-button:disabled,
+.secondary-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+.query-description {
+  margin-top: 13px;
+
+  padding: 12px;
+
+  background: #f8fafc;
+
+  border: 1px solid #dbe3ec;
+
+  border-radius: 7px;
+
+  text-align: center;
+}
+
+.query-description strong {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #0f172a;
+
+  font-size: 14px;
+
+  font-weight: 750;
+}
+
+.query-description p {
+  margin: 0;
+
+  color: #475569;
+
+  font-size: 12px;
+
+  line-height: 1.45;
+}
+
+
+/* =========================================================
+   QUERY FEATURES
+   ========================================================= */
+
+.feature-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 10px;
+}
+
+.feature {
+  min-width: 0;
+
+  min-height: 78px;
+
+  padding: 12px;
+
+  background: #f8fafc;
+
+  border: 1px solid #dbe3ec;
+
+  border-radius: 7px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.feature span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #334155;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+.feature strong {
+  color: #4169e1;
+
+  font-size: 22px;
+
+  font-weight: 800;
+}
+
+.recommendation {
+  margin-top: 10px;
+
+  padding: 13px;
+
+  background: #eff6ff;
+
+  border: 1px solid #bfdbfe;
+
+  border-radius: 7px;
+
+  text-align: center;
+}
+
+.recommendation span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #334155;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+.recommendation strong {
+  color: #2563eb;
+
+  font-size: 16px;
+
+  font-weight: 800;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   ROUTING LOGIC PANEL
+   ========================================================= */
+
+.routing-logic-panel {
+  margin-bottom: 0;
+}
+
+.routing-logic-panel .logic-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 7px;
+}
+
+.routing-logic-panel .logic-rule {
+  min-height: 48px;
+
+  padding: 8px 9px;
+}
+
+.routing-logic-panel .logic-rule:last-child {
+  grid-column: 1 / -1;
+}
+
+
+/* =========================================================
+   LIVE MONGODB EXECUTION
+   ========================================================= */
+
+.execution-panel {
+  margin-bottom: 0;
+}
+
+.panel-title-row {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.success-label {
+  padding: 6px 10px;
+
+  background: #f0fdf4;
+
+  border-radius: 5px;
+
+  color: #15803d;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.execution-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 8px;
+}
+
+.live-metric {
+  min-width: 0;
+
+  min-height: 70px;
+
+  padding: 9px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 6px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.live-metric span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #334155;
+
+  font-size: 13px;
+
+  font-weight: 650;
+}
+
+.live-metric strong {
+  display: block;
+
+  color: #1e3a8a;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   LOGIC
+   ========================================================= */
+
+.logic-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 8px;
+}
+
+.logic-rule {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    auto
+    1fr;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 10px 11px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 6px;
+}
+
+.logic-rule span {
+  color: #334155;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.logic-rule b {
+  color: #64748b;
+}
+
+.logic-rule strong {
+  color: #2563eb;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   PERFORMANCE DASHBOARD
+   ========================================================= */
+
+.performance-layout {
+  display: grid;
+
+  grid-template-columns:
+    0.8fr
+    1.2fr;
+
+  gap: 15px;
+
+  align-items: start;
+}
+
+.performance-left,
+.performance-right {
+  min-width: 0;
+}
+
+.performance-chart-panel {
+  margin-bottom: 15px;
+}
+
+.performance-summary-panel {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   PERFORMANCE CHART
+   ========================================================= */
+
+.chart-large {
+  width: 100%;
+
+  height: 175px;
+
+  min-height: 175px;
+
+  position: relative;
+}
+
+.chart-large .recharts-responsive-container {
+  width: 100% !important;
+
+  height: 175px !important;
+
+  min-height: 175px !important;
+}
+
+.chart-medium {
+  width: 100%;
+
+  height: 200px;
+
+  min-height: 200px;
+
+  position: relative;
+}
+
+.chart-medium .recharts-responsive-container {
+  width: 100% !important;
+
+  height: 200px !important;
+
+  min-height: 200px !important;
+}
+
+.performance-chart-panel .recharts-text {
+  fill: #000000 !important;
+
+  font-size: 12px !important;
+}
+
+.performance-chart-panel
+.recharts-cartesian-axis-tick-value {
+  font-size: 12px !important;
+
+  fill: #000000 !important;
+}
+
+.performance-chart-panel
+.recharts-legend-item-text {
+  font-size: 12px !important;
+
+  fill: #000000 !important;
+}
+
+.performance-chart-panel
+.recharts-label {
+  font-size: 12px !important;
+
+  fill: #000000 !important;
+}
+
+.chart-pie {
+  width: 100%;
+
+  height: 190px;
+
+  min-height: 190px;
+
+  position: relative;
+}
+
+.chart-pie .recharts-responsive-container {
+  width: 100% !important;
+
+  height: 190px !important;
+
+  min-height: 190px !important;
+}
+
+.empty {
+  height: 220px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #475569;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   PERFORMANCE SUMMARY
+   ========================================================= */
+
+.comparison {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 11px 0;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.comparison:last-child {
+  border-bottom: none;
+}
+
+.comparison span {
+  color: #334155;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.comparison strong {
+  color: #15803d;
+
+  font-size: 13px;
+
+  font-weight: 750;
+
+  white-space: nowrap;
+}
+
+.comparison strong.neutral {
+  color: #64748b;
+}
+
+
+/* =========================================================
+   INTERPRETATION
+   ========================================================= */
+
+.interpretation {
+  color: #475569;
+  text-align: left;
+  font-size: 13px;
+
+  line-height: 1.55;
+}
+
+.interpretation p {
+  margin: 0 0 7px;
+  text-align: left;
+}
+
+.interpretation b {
+  color: #334155;
+
+  font-weight: 750;
+}
+
+.note {
+  margin-top: 10px;
+
+  padding: 10px 12px;
+
+  background: #fffbeb;
+
+  border: 1px solid #fde68a;
+
+  border-radius: 6px;
+
+  color: #b45309;
+
+  font-size: 12px;
+
+  line-height: 1.45;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   ROUTING ANALYSIS
+   ========================================================= */
+
+.routing-analysis-layout {
+  display: grid;
+
+  grid-template-columns:
+    0.85fr
+    1.15fr;
+
+  gap: 15px;
+
+  align-items: stretch;
+}
+
+.routing-pie-column {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.routing-pie-panel {
+  flex: 1;
+
+  min-height: 0;
+
+  padding: 13px;
+
+  margin-bottom: 0;
+}
+
+.routing-pie-panel .panel-title {
+  margin-bottom: 0;
+}
+
+.routing-pie-panel .panel-title h3 {
+  font-size: 17px;
+}
+
+.routing-pie-small {
+  width: 100%;
+
+  height: 165px;
+
+  min-height: 165px;
+
+  position: relative;
+}
+
+.routing-pie-small .recharts-responsive-container {
+  width: 100% !important;
+
+  height: 165px !important;
+
+  min-height: 165px !important;
+}
+
+.routing-pie-panel .recharts-pie-label-line {
+  display: none !important;
+}
+
+.routing-pie-panel .recharts-pie-label-text {
+  fill: #ffffff !important;
+
+  font-size: 12px !important;
+
+  font-weight: 800 !important;
+}
+
+.routing-pie-panel .recharts-text {
+  font-size: 10px !important;
+}
+
+.routing-pie-panel .recharts-legend-item-text {
+  font-size: 10px !important;
+}
+
+.routing-pie-panel .recharts-legend-item {
+  margin-right: 5px !important;
+}
+
+.routing-accuracy-panel {
+  min-width: 0;
+
+  height: 420px;
+
+  min-height: 420px;
+
+  margin-bottom: 0;
+
+  padding: 16px;
+}
+
+.routing-accuracy-panel .panel-title {
+  margin-bottom: 12px;
+}
+
+.routing-accuracy-panel .panel-title h3 {
+  font-size: 18px;
+}
+
+.routing-accuracy-panel .accuracy-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 9px;
+
+  width: 100%;
+}
+
+.routing-accuracy-panel .accuracy-card {
+  min-width: 0;
+
+  min-height: 105px;
+
+  height: 105px;
+
+  padding: 10px 14px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #f8fafc;
+
+  border: 1px solid #dbe3ec;
+
+  border-radius: 8px;
+
+  text-align: center;
+}
+
+.routing-accuracy-panel
+.accuracy-card span {
+  display: block;
+
+  min-height: auto;
+
+  margin-bottom: 5px;
+
+  color: #000000;
+
+  font-size: 14px;
+
+  line-height: 1.25;
+
+  font-weight: 750;
+
+  text-align: center;
+}
+
+.routing-accuracy-panel
+.accuracy-card strong {
+  display: block;
+
+  margin: 2px 0 7px;
+
+  color: #000000;
+
+  font-size: 22px;
+
+  line-height: 1;
+
+  font-weight: 800;
+}
+
+.routing-accuracy-panel
+.progress {
+  width: 100%;
+
+  height: 6px;
+
+  background: #e2e8f0;
+
+  border-radius: 5px;
+
+  overflow: hidden;
+}
+
+.routing-accuracy-panel
+.progress-bar {
+  height: 100%;
+
+  background: #4caf50;
+
+  border-radius: 5px;
+}
+
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+
+.table-container {
+  width: 100%;
+
+  overflow-x: auto;
+
+  border-radius: 7px;
+}
+
+table {
+  width: 100%;
+
+  min-width: 850px;
+
+  border-collapse: collapse;
+
+  font-size: 13px;
+}
+
+th {
+  padding: 11px 12px;
+
+  background: #f8fafc;
+
+  color: #334155;
+
+  text-align: left;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+td {
+  padding: 11px 12px;
+
+  color: #475569;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+.query-name {
+  color: #0f172a;
+
+  font-weight: 700;
+}
+
+.router-text {
+  color: #2563eb;
+
+  font-weight: 650;
+}
+
+.accuracy {
+  font-weight: 700;
+}
+
+.accuracy.good {
+  color: #15803d;
+}
+
+.accuracy.warning {
+  color: #b45309;
+}
+
+.improvement {
+  color: #15803d;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   INDEX CARDS
+   ========================================================= */
+
+.index-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 14px;
+}
+
+.index-card {
+  min-width: 0;
+
+  padding: 16px;
+
+  background: #ffffff;
+
+  border: 1px solid #dbe3ec;
+
+  border-radius: 9px;
+}
+
+.index-top {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.index-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #eff6ff;
+
+  border: 1px solid #bfdbfe;
+
+  border-radius: 8px;
+
+  color: #2563eb;
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+.index-number {
+  color: #94a3b8;
+
+  font-size: 24px;
+
+  font-weight: 800;
+}
+
+.index-card h3 {
+  margin: 12px 0 7px;
+
+  color: #0f172a;
+
+  font-size: 17px;
+
+  font-weight: 750;
+}
+
+.index-card code {
+  display: block;
+
+  padding: 8px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 5px;
+
+  color: #334155;
+
+  font-size: 11px;
+
+  overflow-wrap: anywhere;
+}
+
+.index-card p {
+  min-height: 48px;
+
+  margin: 10px 0;
+
+  color: #475569;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+.index-use {
+  padding-top: 10px;
+
+  border-top: 1px solid #e2e8f0;
+}
+
+.index-use span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #64748b;
+
+  font-size: 11px;
+
+  font-weight: 500;
+}
+
+.index-use strong {
+  color: #334155;
+
+  font-size: 12px;
+
+  font-weight: 650;
+}
+
+
+/* =========================================================
+   ROUTING LOGIC TABLE
+   ========================================================= */
+
+.routing-table {
+  width: 100%;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 7px;
+
+  overflow: hidden;
+}
+
+.routing-header,
+.routing-row {
+  display: grid;
+
+  grid-template-columns:
+    0.7fr
+    0.7fr
+    0.7fr
+    2.5fr;
+
+  min-height: 42px;
+
+  align-items: center;
+}
+
+.routing-header {
+  background: #f8fafc;
+}
+
+.routing-header span,
+.routing-row span,
+.routing-row code {
+  padding: 9px 11px;
+
+  font-size: 12px;
+}
+
+.routing-header span {
+  color: #334155;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+.routing-row {
+  border-top: 1px solid #e2e8f0;
+}
+
+.routing-row span {
+  color: #475569;
+
+  font-weight: 550;
+}
+
+.routing-row code {
+  color: #2563eb;
+
+  font-size: 11px;
+
+  overflow-wrap: anywhere;
+}
+
+.note-text {
+  margin: 0;
+
+  color: #475569;
+
+  font-size: 13px;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.error-banner {
+  width: 100%;
+
+  margin-bottom: 15px;
+
+  padding: 11px 14px;
+
+  background: #fef2f2;
+
+  border: 1px solid #fecaca;
+
+  border-radius: 7px;
+
+  color: #b91c1c;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+  width: 100%;
+
+  max-width: 1500px;
+
+  margin: 0 auto;
+
+  padding: 13px 36px 22px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  color: #64748b;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   QUERY-TYPE ANALYSIS ONLY
+   ========================================================= */
+
+/*
+   Only the Query Analysis dashboard uses this wrapper.
+   This does not affect the other five dashboards.
+*/
+
+.query-analysis-panels {
+  display: grid;
+
+  grid-template-columns:
+    1.15fr
+    0.85fr;
+
+  gap: 15px;
+
+  width: 100%;
+
+  align-items: start;
+}
+
+
+/* ---------------------------------------------------------
+   WORKLOAD PERFORMANCE TABLE
+   --------------------------------------------------------- */
+
+.workload-performance-panel {
+  min-width: 0;
+}
+
+
+/*
+   Slightly reduce the table width.
+*/
+
+.workload-performance-panel
+.table-container {
+  width: 96%;
+
+  margin: 0 auto;
+
+  overflow-x: auto;
+}
+
+
+/*
+   Slightly increase table font size.
+*/
+
+.workload-performance-panel table {
+  width: 100%;
+
+  min-width: 0;
+
+  border-collapse: collapse;
+
+  font-size: 14px;
+}
+
+.workload-performance-panel th {
+  padding: 10px 8px;
+
+  font-size: 12px;
+
+  color: #334155;
+
+  text-align: center;
+
+  font-weight: 750;
+}
+
+.workload-performance-panel td {
+  padding: 11px 8px;
+
+  font-size: 14px;
+
+  color: #475569;
+
+  text-align: center;
+}
+
+.workload-performance-panel
+.query-name {
+  color: #0f172a;
+
+  font-size: 14px;
+
+  font-weight: 750;
+}
+
+.workload-performance-panel
+.router-text {
+  color: #2563eb;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.workload-performance-panel
+.accuracy {
+  font-size: 14px;
+
+  font-weight: 750;
+}
+
+.workload-performance-panel
+.improvement {
+  font-size: 14px;
+
+  font-weight: 750;
+}
+
+
+/* ---------------------------------------------------------
+   IMPROVEMENT CHART
+   --------------------------------------------------------- */
+
+.query-improvement-panel {
+  min-width: 0;
+
+  width: 100%;
+}
+
+.query-improvement-panel
+.chart-medium {
+  width: 100%;
+
+  height: 200px;
+
+  min-height: 200px;
+
+  position: relative;
+}
+
+.query-improvement-panel
+.chart-medium
+.recharts-responsive-container {
+  width: 100% !important;
+
+  height: 200px !important;
+
+  min-height: 200px !important;
+}
+
+
+/*
+   Reduce chart label size slightly.
+*/
+
+.query-improvement-panel
+.recharts-cartesian-axis-tick-value {
+  fill: #000000 !important;
+
+  font-size: 10px !important;
+}
+
+.query-improvement-panel
+.recharts-cartesian-axis-tick text {
+  fill: #000000 !important;
+
+  font-size: 10px !important;
+}
+
+.query-improvement-panel
+.recharts-text {
+  fill: #000000 !important;
+}
+
+.query-improvement-panel
+.recharts-legend-item-text {
+  font-size: 10px !important;
+
+  color: #000000 !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .execution-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .chart-large {
+    height: 230px;
+  }
+
+}
+
+
+@media (max-width: 1000px) {
+
+  .metric-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .metric-grid.three {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .router-grid {
+    grid-template-columns:
+      0.95fr
+      1.05fr !important;
+  }
+
+  .two-panels,
+  .overview-two-column {
+    grid-template-columns: 1fr;
+  }
+
+  .architecture-row.bottom {
+    width: 100%;
+  }
+
+  .index-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .routing-analysis-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .routing-pie-column {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+  }
+
+
+  /*
+     Query-Type Analysis becomes one column
+     on smaller screens.
+  */
+
+  .query-analysis-panels {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 750px) {
+
+  .app-header {
+    padding: 18px;
+  }
+
+  .header-content {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .app-header h1 {
+    font-size: 23px;
+  }
+
+  .app-header p {
+    font-size: 13px;
+  }
+
+  .dashboard-container {
+    padding: 20px 14px 25px;
+  }
+
+  .page-heading h2 {
+    font-size: 24px;
+  }
+
+  .page-heading p {
+    font-size: 14px;
+  }
+
+  .metric-grid,
+  .metric-grid.three,
+  .performance-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .scope-grid,
+  .accuracy-grid,
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .router-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .execution-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .logic-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .routing-logic-panel
+  .logic-rule:last-child {
+    grid-column: auto;
+  }
+
+  .index-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .architecture-row {
+    gap: 4px;
+  }
+
+  .architecture-item {
+    min-height: 85px;
+
+    height: 85px;
+
+    padding: 9px 4px;
+  }
+
+  .architecture-item strong {
+    font-size: 10px;
+  }
+
+  .architecture-item span {
+    width: 24px;
+    height: 24px;
+
+    font-size: 9px;
+  }
+
+  .architecture-arrow {
+    font-size: 15px;
+  }
+
+  .architecture-connector {
+    height: 18px;
+
+    font-size: 20px;
+  }
+
+  .finding-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .button-row {
+    flex-direction: column;
+  }
+
+  .badge {
+    position: static;
+
+    margin-top: 8px;
+  }
+
+  .panel-title {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .panel-title span {
+    font-size: 12px;
+  }
+
+  .performance-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-large {
+    width: 100%;
+
+    height: 170px;
+
+    min-height: 170px;
+
+    position: relative;
+  }
+
+  .chart-large .recharts-responsive-container {
+    width: 100% !important;
+
+    height: 170px !important;
+
+    min-height: 170px !important;
+  }
+
+  .chart-large .recharts-cartesian-axis-tick text {
+    font-size: 13px !important;
+  }
+
+  .chart-large .recharts-legend-item-text {
+    font-size: 13px !important;
+  }
+
+  .chart-large .recharts-label {
+    font-size: 12px !important;
+  }
+
+  .chart-medium {
+    height: 200px;
+  }
+
+  .chart-pie {
+    height: 175px;
+  }
+
+  .routing-analysis-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .routing-pie-column {
+    grid-template-columns: 1fr;
+  }
+
+  .routing-accuracy-panel {
+    height: auto;
+
+    min-height: 0;
+  }
+
+  .routing-accuracy-panel
+  .accuracy-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+.query-improvement-panel .chart-medium {
+  width: 92%;
+  height: 210px;
+  min-height: 210px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.query-improvement-panel
+.recharts-responsive-container {
+  width: 100% !important;
+  height: 170px !important;
+  min-height: 170px !important;
+}
+
+.query-improvement-panel
+.recharts-cartesian-axis-tick-value {
+  font-size: 10px !important;
+}
+
+.query-improvement-panel
+.recharts-text {
+  fill: #000000 !important;
+}
+
+.query-chart-labels {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 2px;
+  padding: 0 8px;
+}
+
+.query-chart-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.query-chart-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+/* =========================================================
+   INDEXES PAGE
+   ROUTING RULES + EXPERIMENTAL NOTE SIDE BY SIDE
+   ========================================================= */
+
+.dashboard-page:has(.index-grid) {
+  text-align: left;
+}
+
+
+/* ---------------------------------------------------------
+   Candidate Indexes
+   --------------------------------------------------------- */
+
+.dashboard-page:has(.index-grid) .index-grid {
+  margin-bottom: 10px !important;
+}
+
+
+/* ---------------------------------------------------------
+   Bottom two panels
+   --------------------------------------------------------- */
+
+.dashboard-page:has(.index-grid) > .panel:nth-last-child(2),
+.dashboard-page:has(.index-grid) > .panel:last-child {
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 0 !important;
+  margin-bottom: 8px !important;
+}
+
+
+/* Index Routing Rules */
+
+.dashboard-page:has(.index-grid) > .panel:nth-last-child(2) {
+  width: 68% !important;
+  margin-right: 1% !important;
+  padding: 12px 14px !important;
+}
+
+
+/* Experimental Note */
+
+.dashboard-page:has(.index-grid) > .panel:last-child {
+  width: 31% !important;
+  padding: 14px 16px !important;
+}
+
+
+/* ---------------------------------------------------------
+   Routing Rules heading
+   --------------------------------------------------------- */
+
+.dashboard-page:has(.index-grid)
+> .panel:nth-last-child(2)
+.panel-title {
+  margin-bottom: 8px !important;
+}
+
+.dashboard-page:has(.index-grid)
+> .panel:nth-last-child(2)
+.panel-title h3 {
+  font-size: 19px !important;
+  color: #000000 !important;
+}
+
+
+/* ---------------------------------------------------------
+   Routing Rules table
+   --------------------------------------------------------- */
+
+.dashboard-page:has(.index-grid)
+> .panel:nth-last-child(2)
+.routing-table {
+  width: 100%;
+  font-size: 13px !important;
+  color: #000000 !important;
+}
+
+.dashboard-page:has(.index-grid)
+> .panel:nth-last-child(2)
+.routing-header {
+  height: 36px !important;
+  min-height: 36px !important;
+  padding: 7px 8px !important;
+  font-size: 11px !important;
+  color: #000000 !important;
+}
+
+.dashboard-page:has(.index-grid)
+> .panel:nth-last-child(2)
+.routing-row {
+  height: 40px !important;
+  min-height: 40px !important;
+  padding: 5px 8px !important;
+  font-size: 13px !important;
+  color: #000000 !important;
+}
+
+.dashboard-page:has(.index-grid)
+> .panel:nth-last-child(2)
+.routing-row span {
+  font-size: 13px !important;
+  color: #000000 !important;
+}
+
+.dashboard-page:has(.index-grid)
+> .panel:nth-last-child(2)
+.routing-row code {
+  padding: 6px 8px !important;
+  font-size: 11px !important;
+  color: #000000 !important;
+}
+
+
+/* ---------------------------------------------------------
+   Experimental Note
+   --------------------------------------------------------- */
+
+.dashboard-page:has(.index-grid)
+> .panel:last-child
+.panel-title {
+  margin-bottom: 8px !important;
+}
+
+.dashboard-page:has(.index-grid)
+> .panel:last-child
+.panel-title h3 {
+  font-size: 19px !important;
+  color: #000000 !important;
+}
+
+.dashboard-page:has(.index-grid)
+> .panel:last-child
+.note-text {
+  margin: 0 !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  color: #000000 !important;
+}
+
+
+/* ---------------------------------------------------------
+   Responsive
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+  .dashboard-page:has(.index-grid)
+  > .panel:nth-last-child(2),
+
+  .dashboard-page:has(.index-grid)
+  > .panel:last-child {
+
+    display: block;
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+
+}
+
+.dashboard-page:has(.index-grid) .index-card h3 {
+  font-size: 20px !important;
+  color: #000000 !important;
+}
+
+.dashboard-page:has(.index-grid) .index-card code {
+  font-size: 14px !important;
+  color: #000000 !important;
+}
+
+.dashboard-page:has(.index-grid) .index-card p {
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  color: #000000 !important;
+}
+
+.dashboard-page:has(.index-grid) .index-use span {
+  font-size: 13px !important;
+  color: #000000 !important;
+}
+
+.dashboard-page:has(.index-grid) .index-use strong {
+  font-size: 15px !important;
+  color: #000000 !important;
+}

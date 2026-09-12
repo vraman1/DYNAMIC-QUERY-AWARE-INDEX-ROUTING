@@ -1,0 +1,7 @@
+query_type,queries,native_mean_ms,router_mean_ms,best_mean_ms,router_accuracy,router_improvement_percent
+spatial,9,1965.7,1837.07,1941.69,100.0,6.54
+spatial_attribute,9,2194.07,2018.09,2051.44,88.89,8.02
+spatio_temporal,9,38.79,26.24,28.38,100.0,32.33
+spatio_temporal_attribute,9,45.83,28.58,30.02,77.78,37.65
+temporal,9,30.5,25.93,30.38,100.0,14.98
+temporal_attribute,9,36.92,35.42,37.29,100.0,4.06

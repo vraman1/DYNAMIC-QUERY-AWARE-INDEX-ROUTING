@@ -1,0 +1,1893 @@
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+:root {
+  font-family:
+    Inter,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  color: #0f172a;
+  background: #f1f5f9;
+}
+
+body {
+  min-width: 320px;
+  background: #f1f5f9;
+}
+
+button,
+select,
+input {
+  font: inherit;
+}
+
+
+/* =========================================================
+   APP
+   ========================================================= */
+
+.app {
+  min-height: 100vh;
+  background: #f1f5f9;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.app-header {
+  background: #0f172a;
+  padding: 23px 36px;
+
+  border-bottom: 1px solid #1e293b;
+}
+
+.header-content {
+  width: 100%;
+  max-width: 1500px;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 25px;
+}
+
+.header-title {
+  min-width: 0;
+}
+
+.app-header h1 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 31px;
+  line-height: 1.15;
+
+  font-weight: 750;
+
+  letter-spacing: -0.5px;
+}
+
+.app-header p {
+  margin: 7px 0 0;
+
+  color: #ffffff;
+
+  font-size: 15px;
+  line-height: 1.4;
+
+  font-weight: 450;
+
+  opacity: 0.9;
+}
+
+.system-status {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 10px 14px;
+
+  border: 1px solid #334155;
+  border-radius: 22px;
+
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 550;
+
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #f59e0b;
+}
+
+.status-dot.online {
+  background: #22c55e;
+}
+
+
+/* =========================================================
+   TAB NAVIGATION
+   ========================================================= */
+
+.tab-navigation {
+  position: sticky;
+  top: 0;
+
+  z-index: 50;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.tab-container {
+  width: 100%;
+  max-width: 1500px;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  overflow-x: auto;
+}
+
+.tab-button {
+  padding: 16px 25px;
+
+  background: transparent;
+
+  border: none;
+  border-bottom: 3px solid transparent;
+
+  color: #334155;
+
+  font-size: 14px;
+  font-weight: 650;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+}
+
+.tab-button:hover {
+  color: #0f172a;
+
+  background: #f8fafc;
+}
+
+.tab-button.active {
+  color: #2563eb;
+
+  border-bottom-color: #2563eb;
+}
+
+
+/* =========================================================
+   MAIN DASHBOARD
+   ========================================================= */
+
+.dashboard-container {
+  width: 100%;
+  max-width: 1500px;
+
+  margin: 0 auto;
+
+  padding: 24px 36px 28px;
+}
+
+.dashboard-page {
+  width: 100%;
+
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   PAGE HEADING
+   Applies to ALL six dashboards
+   ========================================================= */
+
+.page-heading {
+  position: relative;
+
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  margin-bottom: 21px;
+
+  gap: 4px;
+}
+
+.page-heading h2 {
+  margin: 0;
+
+  color: #0f172a;
+
+  font-size: 28px;
+  line-height: 1.2;
+
+  font-weight: 750;
+
+  letter-spacing: -0.35px;
+}
+
+.page-heading p {
+  margin: 6px 0 0;
+
+  color: #334155;
+
+  font-size: 15px;
+  line-height: 1.45;
+
+  font-weight: 500;
+}
+
+.badge {
+  position: absolute;
+
+  right: 0;
+  top: 0;
+
+  padding: 8px 12px;
+
+  background: #eff6ff;
+
+  border: 1px solid #bfdbfe;
+
+  border-radius: 7px;
+
+  color: #2563eb;
+
+  font-size: 11px;
+  font-weight: 750;
+}
+
+
+/* =========================================================
+   PANELS
+   ========================================================= */
+
+.panel {
+  width: 100%;
+  min-width: 0;
+
+  margin-bottom: 15px;
+
+  padding: 18px;
+
+  background: #ffffff;
+
+  border: 1px solid #d5dee9;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.035);
+}
+
+.panel-title {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 15px;
+}
+
+.panel-title h3 {
+  margin: 0;
+
+  color: #0f172a;
+
+  font-size: 19px;
+  line-height: 1.25;
+
+  font-weight: 750;
+}
+
+.panel-title span {
+  color: #334155;
+
+  font-size: 13px;
+  line-height: 1.4;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   METRIC CARDS
+   ========================================================= */
+
+.metric-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 14px;
+
+  margin-bottom: 15px;
+}
+
+.metric-grid.three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.metric-card {
+  min-width: 0;
+
+  padding: 16px;
+
+  background: #ffffff;
+
+  border: 1px solid #d5dee9;
+
+  border-radius: 9px;
+
+  text-align: center;
+}
+
+.metric-card.highlight {
+  background: #eff6ff;
+
+  border-color: #60a5fa;
+
+  box-shadow:
+    0 2px 7px rgba(37, 99, 235, 0.07);
+}
+
+.metric-card span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #1e293b;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.metric-card strong {
+  display: block;
+
+  color: #0f172a;
+
+  font-size: 24px;
+  line-height: 1.1;
+
+  font-weight: 750;
+}
+
+.metric-card small {
+  display: block;
+
+  margin-top: 6px;
+
+  color: #475569;
+
+  font-size: 12px;
+  line-height: 1.35;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   OVERVIEW
+   ========================================================= */
+
+.overview-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.72fr)
+    minmax(320px, 0.78fr);
+
+  gap: 14px;
+
+  align-items: stretch;
+}
+
+
+/* =========================================================
+   ARCHITECTURE
+   ========================================================= */
+
+.architecture-panel {
+  overflow: hidden;
+}
+
+.architecture-panel .panel-title span {
+  color: #334155;
+
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.architecture {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  padding: 5px 0;
+}
+
+.architecture-row {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+}
+
+.architecture-row.bottom {
+  width: 78%;
+}
+
+.architecture-item {
+  flex: 1 1 0;
+
+  min-width: 0;
+  min-height: 105px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 8px;
+
+  border: 1px solid;
+
+  border-radius: 9px;
+
+  text-align: center;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.architecture-item:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 4px 10px rgba(15, 23, 42, 0.08);
+}
+
+.architecture-item span {
+  width: 31px;
+  height: 31px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 9px;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.architecture-item strong {
+  max-width: 150px;
+
+  color: #0f172a;
+
+  font-size: 14px;
+  line-height: 1.3;
+
+  font-weight: 750;
+}
+
+.architecture-arrow {
+  flex: 0 0 auto;
+
+  color: #334155;
+
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.architecture-connector {
+  height: 27px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #2563eb;
+
+  font-size: 27px;
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   ARCHITECTURE COLORS
+   ========================================================= */
+
+.architecture-item.blue {
+  background: #eff6ff;
+  border-color: #93c5fd;
+}
+
+.architecture-item.blue span {
+  background: #2563eb;
+}
+
+.architecture-item.purple {
+  background: #f5f3ff;
+  border-color: #c4b5fd;
+}
+
+.architecture-item.purple span {
+  background: #7c3aed;
+}
+
+.architecture-item.orange {
+  background: #fff7ed;
+  border-color: #fdba74;
+}
+
+.architecture-item.orange span {
+  background: #ea580c;
+}
+
+.architecture-item.green {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.architecture-item.green span {
+  background: #16a34a;
+}
+
+.architecture-item.cyan {
+  background: #ecfeff;
+  border-color: #67e8f9;
+}
+
+.architecture-item.cyan span {
+  background: #0891b2;
+}
+
+.architecture-item.pink {
+  background: #fdf2f8;
+  border-color: #f9a8d4;
+}
+
+.architecture-item.pink span {
+  background: #db2777;
+}
+
+.architecture-item.dark {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.architecture-item.dark span {
+  background: #334155;
+}
+
+
+/* =========================================================
+   KEY FINDING
+   ========================================================= */
+
+.finding-panel {
+  min-width: 0;
+
+  background: #f8fbff;
+
+  overflow: hidden;
+}
+
+.accuracy-highlight {
+  padding: 14px 15px;
+
+  margin-bottom: 10px;
+
+  background: #eff6ff;
+
+  border: 1px solid #93c5fd;
+
+  border-radius: 8px;
+
+  text-align: center;
+}
+
+.accuracy-highlight span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #1d4ed8;
+
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.accuracy-highlight strong {
+  display: block;
+
+  color: #1d4ed8;
+
+  font-size: 32px;
+  line-height: 1;
+
+  font-weight: 800;
+}
+
+.accuracy-highlight small {
+  display: block;
+
+  margin-top: 6px;
+
+  color: #475569;
+
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.improvement-small {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  padding: 10px 12px;
+
+  background: #ffffff;
+
+  border: 1px solid #dbe3ec;
+
+  border-radius: 7px;
+}
+
+.improvement-small span {
+  display: block;
+
+  color: #334155;
+
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.improvement-small small {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #64748b;
+
+  font-size: 10px;
+}
+
+.improvement-small strong {
+  color: #0f172a;
+
+  font-size: 17px;
+  font-weight: 750;
+
+  white-space: nowrap;
+}
+
+.finding-stats {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 6px;
+
+  margin-top: 10px;
+}
+
+.mini-stat {
+  min-width: 0;
+
+  padding: 9px 5px;
+
+  background: #ffffff;
+
+  border: 1px solid #dbe3ec;
+
+  border-radius: 6px;
+
+  text-align: center;
+}
+
+.mini-stat span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #334155;
+
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.mini-stat strong {
+  display: block;
+
+  color: #0f172a;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   RESEARCH SCOPE
+   ========================================================= */
+
+.scope-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 9px;
+}
+
+.scope-item {
+  padding: 12px;
+
+  background: #f8fafc;
+
+  border: 1px solid #dbe3ec;
+
+  border-radius: 7px;
+}
+
+.scope-item strong {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #1e293b;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.scope-item span {
+  color: #475569;
+
+  font-size: 12px;
+  line-height: 1.4;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   LIVE ROUTER
+   ========================================================= */
+
+.router-grid {
+  display: grid;
+
+  grid-template-columns: 0.8fr 1.2fr;
+
+  gap: 16px;
+}
+
+.input-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #1e293b;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.query-select {
+  width: 100%;
+
+  padding: 11px 12px;
+
+  background: #ffffff;
+
+  border: 1px solid #cbd5e1;
+
+  border-radius: 6px;
+
+  color: #0f172a;
+
+  font-size: 14px;
+
+  outline: none;
+}
+
+.query-select:focus {
+  border-color: #2563eb;
+}
+
+.button-row {
+  display: flex;
+
+  gap: 9px;
+
+  margin-top: 12px;
+}
+
+.primary-button,
+.secondary-button {
+  padding: 10px 16px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.primary-button {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.primary-button:hover {
+  background: #1d4ed8;
+}
+
+.secondary-button {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.secondary-button:hover {
+  background: #cbd5e1;
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.query-description {
+  margin-top: 13px;
+
+  padding: 11px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 7px;
+}
+
+.query-description strong {
+  color: #1e293b;
+
+  font-size: 14px;
+}
+
+.query-description p {
+  margin: 5px 0 0;
+
+  color: #475569;
+
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.feature-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 10px;
+}
+
+.feature {
+  padding: 13px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 7px;
+
+  text-align: center;
+}
+
+.feature span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #334155;
+
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.feature strong {
+  color: #2563eb;
+
+  font-size: 18px;
+  font-weight: 750;
+}
+
+.recommendation {
+  margin-top: 13px;
+
+  padding: 11px;
+
+  background: #eff6ff;
+
+  border: 1px solid #bfdbfe;
+
+  border-radius: 7px;
+
+  text-align: center;
+}
+
+.recommendation span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #334155;
+
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.recommendation strong {
+  color: #1d4ed8;
+
+  font-size: 14px;
+
+  overflow-wrap: anywhere;
+}
+
+.panel-title-row {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.success-label {
+  padding: 5px 9px;
+
+  background: #f0fdf4;
+
+  border-radius: 5px;
+
+  color: #15803d;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.execution-grid {
+  display: grid;
+
+  grid-template-columns: repeat(6, 1fr);
+
+  gap: 9px;
+}
+
+.live-metric {
+  min-width: 0;
+
+  padding: 11px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 6px;
+}
+
+.live-metric span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #334155;
+
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.live-metric strong {
+  display: block;
+
+  color: #0f172a;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  overflow-wrap: anywhere;
+}
+
+.logic-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 8px;
+}
+
+.logic-rule {
+  display: grid;
+
+  grid-template-columns: 1fr auto 1fr;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 10px 11px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 6px;
+}
+
+.logic-rule span {
+  color: #334155;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.logic-rule b {
+  color: #64748b;
+}
+
+.logic-rule strong {
+  color: #2563eb;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   PERFORMANCE DASHBOARD
+   ========================================================= */
+
+/*
+   Important:
+   The old chart height was 350px.
+   Reduced to 245px so the Performance page
+   fits much better in one screen.
+*/
+
+.chart-large {
+  width: 100%;
+  height: 245px;
+}
+
+.chart-medium {
+  width: 100%;
+  height: 230px;
+}
+
+.chart-pie {
+  width: 100%;
+  height: 220px;
+}
+
+.empty {
+  height: 220px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #475569;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   PERFORMANCE CARDS
+   ========================================================= */
+
+.performance-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 14px;
+
+  margin-bottom: 15px;
+}
+
+.performance-card {
+  padding: 15px;
+
+  background: #ffffff;
+
+  border: 1px solid #d5dee9;
+
+  border-radius: 9px;
+
+  text-align: center;
+}
+
+.performance-card.highlight {
+  background: #eff6ff;
+
+  border-color: #60a5fa;
+}
+
+.performance-card span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #1e293b;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.performance-card strong {
+  display: block;
+
+  color: #0f172a;
+
+  font-size: 25px;
+  font-weight: 750;
+}
+
+.performance-card small {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #475569;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   TWO COLUMN LAYOUTS
+   ========================================================= */
+
+.two-panels {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 15px;
+}
+
+.overview-two-column {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 15px;
+}
+
+
+/* =========================================================
+   COMPARISON
+   ========================================================= */
+
+.comparison {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 0;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.comparison:last-child {
+  border-bottom: none;
+}
+
+.comparison span {
+  color: #334155;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.comparison strong {
+  color: #15803d;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.comparison strong.neutral {
+  color: #64748b;
+}
+
+.interpretation p {
+  color: #475569;
+
+  font-size: 13px;
+
+  line-height: 1.55;
+}
+
+.note {
+  padding: 10px;
+
+  background: #fffbeb;
+
+  border: 1px solid #fde68a;
+
+  border-radius: 6px;
+
+  color: #92400e;
+
+  font-size: 12px;
+
+  line-height: 1.45;
+}
+
+
+/* =========================================================
+   ROUTING ANALYSIS
+   ========================================================= */
+
+.accuracy-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 10px;
+}
+
+.accuracy-card {
+  padding: 13px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 7px;
+}
+
+.accuracy-card span {
+  display: block;
+
+  min-height: 31px;
+
+  color: #334155;
+
+  font-size: 13px;
+  line-height: 1.35;
+
+  font-weight: 650;
+}
+
+.accuracy-card strong {
+  display: block;
+
+  margin: 6px 0;
+
+  color: #15803d;
+
+  font-size: 19px;
+  font-weight: 750;
+}
+
+.progress {
+  height: 6px;
+
+  background: #e2e8f0;
+
+  border-radius: 4px;
+
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+
+  background: #16a34a;
+}
+
+
+/* =========================================================
+   ROUTING DISTRIBUTION
+   ========================================================= */
+
+.routing-distribution {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 15px;
+}
+
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+
+.table-container {
+  width: 100%;
+
+  overflow-x: auto;
+
+  border-radius: 7px;
+}
+
+table {
+  width: 100%;
+
+  min-width: 850px;
+
+  border-collapse: collapse;
+
+  font-size: 13px;
+}
+
+th {
+  padding: 11px 12px;
+
+  background: #f8fafc;
+
+  color: #334155;
+
+  text-align: left;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  border-bottom: 1px solid #cbd5e1;
+
+  white-space: nowrap;
+}
+
+td {
+  padding: 11px 12px;
+
+  color: #475569;
+
+  font-size: 12px;
+
+  border-bottom: 1px solid #f1f5f9;
+}
+
+tr:hover td {
+  background: #f8fafc;
+}
+
+.query-name {
+  color: #1e293b !important;
+
+  font-weight: 700;
+}
+
+.router-text {
+  color: #2563eb !important;
+
+  font-weight: 700;
+}
+
+.improvement {
+  color: #15803d !important;
+
+  font-weight: 700;
+}
+
+.accuracy {
+  display: inline-block;
+
+  padding: 4px 7px;
+
+  border-radius: 5px;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.accuracy.good {
+  background: #f0fdf4;
+
+  color: #15803d;
+}
+
+.accuracy.warning {
+  background: #fffbeb;
+
+  color: #a16207;
+}
+
+
+/* =========================================================
+   QUERY ANALYSIS
+   ========================================================= */
+
+.query-analysis-grid {
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  gap: 15px;
+}
+
+
+/* =========================================================
+   INDEX DASHBOARD
+   ========================================================= */
+
+.index-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 15px;
+
+  margin-bottom: 15px;
+}
+
+.index-card {
+  min-width: 0;
+
+  padding: 17px;
+
+  background: #ffffff;
+
+  border: 1px solid #dbe3ec;
+
+  border-radius: 9px;
+}
+
+.index-top {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.index-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #eff6ff;
+
+  border: 1px solid #bfdbfe;
+
+  border-radius: 8px;
+
+  color: #2563eb;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.index-number {
+  color: #94a3b8;
+
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.index-card h3 {
+  margin: 12px 0 7px;
+
+  color: #0f172a;
+
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.index-card code {
+  display: block;
+
+  padding: 8px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 5px;
+
+  color: #334155;
+
+  font-size: 11px;
+
+  overflow-wrap: anywhere;
+}
+
+.index-card p {
+  min-height: 48px;
+
+  margin: 10px 0;
+
+  color: #475569;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+.index-use {
+  padding-top: 10px;
+
+  border-top: 1px solid #e2e8f0;
+}
+
+.index-use span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #64748b;
+
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.index-use strong {
+  color: #334155;
+
+  font-size: 12px;
+  font-weight: 650;
+}
+
+
+/* =========================================================
+   ROUTING LOGIC TABLE
+   ========================================================= */
+
+.routing-table {
+  width: 100%;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 7px;
+
+  overflow: hidden;
+}
+
+.routing-header,
+.routing-row {
+  display: grid;
+
+  grid-template-columns:
+    0.7fr
+    0.7fr
+    0.7fr
+    2.5fr;
+
+  min-height: 42px;
+
+  align-items: center;
+}
+
+.routing-header {
+  background: #f8fafc;
+}
+
+.routing-header span,
+.routing-row span,
+.routing-row code {
+  padding: 9px 11px;
+
+  font-size: 12px;
+}
+
+.routing-header span {
+  color: #334155;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.routing-row {
+  border-top: 1px solid #e2e8f0;
+}
+
+.routing-row span {
+  color: #475569;
+
+  font-weight: 550;
+}
+
+.routing-row code {
+  color: #2563eb;
+
+  font-size: 11px;
+
+  overflow-wrap: anywhere;
+}
+
+.note-text {
+  margin: 0;
+
+  color: #475569;
+
+  font-size: 13px;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+  width: 100%;
+  max-width: 1500px;
+
+  margin: 0 auto;
+
+  padding: 13px 36px 22px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  color: #64748b;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .execution-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .chart-large {
+    height: 230px;
+  }
+
+}
+
+
+@media (max-width: 1000px) {
+
+  .metric-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .metric-grid.three {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .router-grid,
+  .two-panels,
+  .overview-two-column,
+  .routing-distribution {
+    grid-template-columns: 1fr;
+  }
+
+  .architecture-row.bottom {
+    width: 100%;
+  }
+
+  .index-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 750px) {
+
+  .app-header {
+    padding: 18px;
+  }
+
+  .header-content {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .app-header h1 {
+    font-size: 23px;
+  }
+
+  .app-header p {
+    font-size: 13px;
+  }
+
+  .dashboard-container {
+    padding: 20px 14px 25px;
+  }
+
+  .page-heading h2 {
+    font-size: 24px;
+  }
+
+  .page-heading p {
+    font-size: 14px;
+  }
+
+  .metric-grid,
+  .metric-grid.three,
+  .performance-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .scope-grid,
+  .accuracy-grid,
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .execution-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .logic-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .index-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .architecture-row {
+    gap: 4px;
+  }
+
+  .architecture-item {
+    min-height: 85px;
+
+    padding: 9px 4px;
+  }
+
+  .architecture-item strong {
+    font-size: 10px;
+  }
+
+  .architecture-item span {
+    width: 24px;
+    height: 24px;
+
+    font-size: 9px;
+  }
+
+  .architecture-arrow {
+    font-size: 15px;
+  }
+
+  .finding-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .button-row {
+    flex-direction: column;
+  }
+
+  .badge {
+    position: static;
+
+    margin-top: 8px;
+  }
+
+  .panel-title {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .panel-title span {
+    font-size: 12px;
+  }
+
+  .chart-large {
+    height: 210px;
+  }
+
+  .chart-medium {
+    height: 200px;
+  }
+
+  .chart-pie {
+    height: 190px;
+  }
+
+  .footer {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+}

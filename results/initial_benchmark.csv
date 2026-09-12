@@ -1,0 +1,7 @@
+query_id,query_type,results,execution_time_ms,documents_examined,keys_examined,index_used
+Q1,temporal,1894,15,1894,1894,pickup_time_1
+Q2,spatial,60320,1783,110135,110149,pickup_location_2dsphere
+Q3,spatio_temporal,215,16,405,437,pickup_location_2dsphere_pickup_time_1
+Q4,temporal_attribute,520,14,1894,1894,pickup_time_1
+Q5,spatial_attribute,20125,2002,110135,110149,pickup_location_2dsphere_pickup_time_1
+Q6,spatio_temporal_attribute,56,14,405,437,pickup_location_2dsphere_pickup_time_1
