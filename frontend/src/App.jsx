@@ -96,6 +96,19 @@ function formatNumber(value) {
 }
 
 
+function downloadTextFile(filename, content, mimeType = "text/plain;charset=utf-8") {
+  const blob = new Blob([content], { type: mimeType })
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement("a")
+  link.href = url
+  link.download = filename
+  document.body.appendChild(link)
+  link.click()
+  link.remove()
+  URL.revokeObjectURL(url)
+}
+
+
 function App() {
 
   const [activeTab, setActiveTab] =
@@ -250,6 +263,111 @@ function App() {
     }
   }
 
+
+
+  async function routeAndExecuteQuery() {
+    try {
+      setRouting(true)
+      setExecuting(true)
+      setError("")
+      setRouteResult(null)
+      setExecuteResult(null)
+
+      const query = encodeURIComponent(selectedQuery)
+      const [routeResponse, executeResponse] = await Promise.all([
+        fetch(`${API}/api/route?query_type=${query}`, { method: "POST" }),
+        fetch(`${API}/api/execute?query_type=${query}`, { method: "POST" }),
+      ])
+
+      if (!routeResponse.ok || !executeResponse.ok) {
+        throw new Error("Routing or execution failed")
+      }
+
+      const [routeData, executeData] = await Promise.all([
+        routeResponse.json(),
+        executeResponse.json(),
+      ])
+      setRouteResult(routeData)
+      setExecuteResult(executeData)
+    } catch (err) {
+      console.error(err)
+      setError("Unable to route and execute the query. Check that the backend and MongoDB are running.")
+    } finally {
+      setRouting(false)
+      setExecuting(false)
+    }
+  }
+
+  function exportResearchResults(format) {
+    if (!analytics) {
+      setError("Research results are not loaded yet. Please refresh the dashboard.")
+      return
+    }
+
+    const exportDate = new Date().toISOString()
+    const rows = queryTypeData.map((item) => ({
+      query_type: item.query_type,
+      query_count: item.count,
+      native_avg_ms: item.native_ms,
+      rule_router_avg_ms: item.router_ms,
+      empirical_best_avg_ms: item.best_ms,
+      router_accuracy_percent: item.accuracy,
+      improvement_vs_native_percent: item.improvement,
+    }))
+
+    if (format === "json") {
+      downloadTextFile(
+        "dqi_research_results.json",
+        JSON.stringify({ exported_at: exportDate, summary, query_types: rows, raw_analytics: analytics }, null, 2),
+        "application/json;charset=utf-8"
+      )
+      return
+    }
+
+    if (format === "csv") {
+      const headers = Object.keys(rows[0] || {
+        query_type: "", query_count: "", native_avg_ms: "",
+        rule_router_avg_ms: "", empirical_best_avg_ms: "",
+        router_accuracy_percent: "", improvement_vs_native_percent: "",
+      })
+      const escapeCsv = (value) => {
+        if (value === null || value === undefined) return ""
+        const text = String(value)
+        return /[",\n\r]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text
+      }
+      const csv = [
+        headers.join(","),
+        ...rows.map((row) => headers.map((header) => escapeCsv(row[header])).join(",")),
+      ].join("\r\n")
+      downloadTextFile("dqi_query_type_results.csv", csv, "text/csv;charset=utf-8")
+      return
+    }
+
+    const report = [
+      "# Dynamic Query-Aware Index Routing for Spatio-Temporal Data in Document-Oriented NoSQL Systems",
+      "",
+      `Exported at: ${exportDate}`,
+      "",
+      "## Overall Experimental Summary",
+      "",
+      `- Total workload queries: ${summary.total_queries ?? "Not available"}`,
+      `- Router accuracy: ${summary.router_accuracy ?? "Not available"}%`,
+      `- Native MongoDB average execution time: ${summary.native_avg_ms ?? "Not available"} ms`,
+      `- Rule Router average execution time: ${summary.router_avg_ms ?? "Not available"} ms`,
+      `- Empirical Best average execution time: ${summary.best_avg_ms ?? "Not available"} ms`,
+      `- Router improvement versus native MongoDB: ${summary.router_improvement ?? "Not available"}%`,
+      "",
+      "## Results by Query Type",
+      "",
+      "| Query type | Queries | Native (ms) | Rule Router (ms) | Empirical Best (ms) | Router accuracy (%) | Improvement (%) |",
+      "|---|---:|---:|---:|---:|---:|---:|",
+      ...rows.map((row) => `| ${row.query_type} | ${row.query_count ?? ""} | ${row.native_avg_ms ?? ""} | ${row.rule_router_avg_ms ?? ""} | ${row.empirical_best_avg_ms ?? ""} | ${row.router_accuracy_percent ?? ""} | ${Number(row.improvement_vs_native_percent ?? 0).toFixed(2)} |`),
+      "",
+      "Note: This report exports the values returned by the project's analytics API. It does not create new benchmark measurements.",
+      "",
+    ].join("\n")
+    downloadTextFile("dqi_research_report.md", report, "text/markdown;charset=utf-8")
+  }
 
   const summary =
     analytics?.summary || {}
@@ -738,6 +856,15 @@ function App() {
                         ? "Executing..."
                         : "Execute Query"}
                     </button>
+                    <button
+                      className="tertiary-button"
+                      onClick={routeAndExecuteQuery}
+                      disabled={routing || executing}
+                    >
+                      {routing || executing
+                        ? "Testing..."
+                        : "Route + Execute"}
+                    </button>
 
                   </div>
 
@@ -1122,6 +1249,29 @@ function App() {
 
               </div>
 
+            </div>
+
+            <div className="panel research-export-panel">
+              <div className="export-copy">
+                <PanelTitle
+                  title="Research Results Export"
+                  subtitle="Download the currently loaded experimental summary and query-type results."
+                />
+                <p className="note-text">
+                  Exports use the analytics already loaded by this dashboard; they do not rerun benchmarks or invent measurements.
+                </p>
+              </div>
+              <div className="export-actions">
+                <button className="export-button" onClick={() => exportResearchResults("markdown")} disabled={!analytics}>
+                  Download Report (.md)
+                </button>
+                <button className="export-button" onClick={() => exportResearchResults("csv")} disabled={!analytics}>
+                  Download Results (.csv)
+                </button>
+                <button className="export-button" onClick={() => exportResearchResults("json")} disabled={!analytics}>
+                  Download Data (.json)
+                </button>
+              </div>
             </div>
 
           </section>
