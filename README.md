@@ -75,8 +75,10 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ## 3. Install Python Dependencies
 
 ```powershell
-pip install pandas pyarrow pymongo fastapi uvicorn scikit-learn
+pip install -r requirements.txt
 ```
+
+`geopandas` and `shapely` are only needed for the data-preparation scripts (`prepare_data.py`, `inspect_zones.py`).
 
 ## 4. Start MongoDB
 
@@ -146,7 +148,21 @@ Expected:
 495160
 ```
 
+> Run `load_data.py` only once. It does not clear the collection, so running it again inserts duplicate documents.
+
 ## 6. Create MongoDB Indexes
+
+The backend forces one of three candidate indexes for every query, so these must exist or Execute Query fails.
+
+With MongoDB running, execute:
+
+```powershell
+python scripts/create_indexes.py
+```
+
+The script is safe to run more than once; existing indexes are skipped.
+
+Alternatively, create them manually in `mongosh`:
 
 ### Temporal Index
 
@@ -354,6 +370,7 @@ inspect_dataset.py
 prepare_data.py
 verify_data.py
 load_data.py
+create_indexes.py
 generate_queries.py
 benchmark.py
 repeat_benchmark.py
