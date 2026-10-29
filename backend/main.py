@@ -1,6 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pymongo import MongoClient
+from pymongo.errors import PyMongoError
 from datetime import datetime, timezone
 import time
 
@@ -153,10 +154,10 @@ def route_query(query_type: str):
 
     if selected_index is None:
 
-        return {
-            "status": "error",
-            "message": "Unknown query type"
-        }
+        raise HTTPException(
+            status_code=400,
+            detail=f"Unknown query type: {query_type}"
+        )
 
     return {
         "status": "ok",
@@ -267,13 +268,10 @@ def execute_query(query_type: str):
 
     if query_type not in queries:
 
-        return {
-
-            "status": "error",
-
-            "message":
-                "Query type not supported"
-        }
+        raise HTTPException(
+            status_code=400,
+            detail=f"Query type not supported: {query_type}"
+        )
 
 
     # -----------------------------------------------------
@@ -309,11 +307,20 @@ def execute_query(query_type: str):
     start_time = time.perf_counter()
 
 
-    explain_result = db.command(
-        "explain",
-        explain_command,
-        verbosity="executionStats"
-    )
+    try:
+
+        explain_result = db.command(
+            "explain",
+            explain_command,
+            verbosity="executionStats"
+        )
+
+    except PyMongoError as e:
+
+        raise HTTPException(
+            status_code=503,
+            detail=f"MongoDB query failed: {e}"
+        )
 
 
     end_time = time.perf_counter()
@@ -323,7 +330,8 @@ def execute_query(query_type: str):
     # Calculate Execution Time
     # -----------------------------------------------------
 
-    execution_time_ms = (
+    # Round trip includes network + explain overhead
+    round_trip_time_ms = (
         end_time - start_time
     ) * 1000
 
@@ -334,6 +342,12 @@ def execute_query(query_type: str):
 
     execution_stats = (
         explain_result["executionStats"]
+    )
+
+
+    # Server-side query time reported by MongoDB
+    execution_time_ms = (
+        execution_stats["executionTimeMillis"]
     )
 
 
@@ -368,8 +382,11 @@ def execute_query(query_type: str):
             selected_index,
 
         "execution_time_ms":
+            execution_time_ms,
+
+        "round_trip_time_ms":
             round(
-                execution_time_ms,
+                round_trip_time_ms,
                 2
             ),
 
